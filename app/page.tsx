@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.scss';
 import { db } from '../config/firebase';
-import { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 
 /*utilizo o 'type' para tipar o valor das variaveis utilizados*/
 type Contato ={
@@ -86,7 +86,11 @@ const Home: NextPage = () => {
   /* essa function vai mapear os contatos e ver se cada letra
   digitada pertence a algum contato e se existir, vai ser armazenado na busca */
   function buscar(event: FormEvent){
-    const palavra = event.target.value
+    const palavra = (event: React.ChangeEvent<HTMLInputElement>,
+      ) => {
+        console.log(event.target.value);
+      };
+    console.log(palavra);
 
     if(palavra.length > 0){
       setBuscando(true)
